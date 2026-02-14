@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bao Lì Xì</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial;
+            background-color: #f8e1e1;
+        }
+
+        .bao {
+            width: 200px;
+            height: 300px;
+            background: red;
+            margin: 50px auto;
+            border-radius: 20px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .money {
+            display: none;
+            font-size: 24px;
+            color: gold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>🧧 Nhấn để mở bao lì xì</h1>
+
+<div class="bao" onclick="openBao()"></div>
+
+<div class="money" id="money">
+    Bạn nhận được: {{ money }} VND
+</div>
+
+<script>
+function openBao() {
+    document.getElementById("money").style.display = "block";
+}
+</script>
+
+</body>
+</html>
