@@ -1,14 +1,23 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 import random
-import os
 
 app = Flask(__name__)
 
 @app.route("/")
-def home():
-    money = random.randint(10000, 100000)
-    return render_template("index.html", money=money)
+def index():
+    # Tạo mới mỗi lần reload trang
+    prizes = [20000, 20000, 20000, 50000]
+    random.shuffle(prizes)
+
+    # Lưu vào session tạm (hoặc biến global tạm thời)
+    app.config["CURRENT_PRIZES"] = prizes
+
+    return render_template("index.html")
+
+@app.route("/open/<int:index>")
+def open_lixi(index):
+    prizes = app.config.get("CURRENT_PRIZES", [20000,20000,20000,50000])
+    return jsonify({"prize": prizes[index]})
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+    app.run(host="0.0.0.0", port=10000)
