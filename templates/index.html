@@ -63,6 +63,7 @@
         .opened {
             background: linear-gradient(145deg, #990000, #660000);
             cursor: default;
+            transform: scale(0.95);
         }
 
         #secret {
@@ -99,10 +100,16 @@
     <div class="lixi" onclick="openLixi(this,3)">MỞ</div>
 </div>
 
-<div id="secret">🎉 SECRET 🎉</div>
+<div id="secret">🎉 SECRET 50K 🎉</div>
+
+<!-- 🔊 Âm thanh -->
+<audio id="winSound" src="/static/secret.mp3"></audio>
 
 <script>
 function openLixi(element, index) {
+
+    // Ngăn mở lại
+    if (element.classList.contains("opened")) return;
 
     fetch("/open/" + index)
         .then(res => res.json())
@@ -113,12 +120,22 @@ function openLixi(element, index) {
             element.onclick = null;
 
             if (data.prize == 50000) {
-                document.getElementById("secret").style.display = "block";
+
+                // Hiện SECRET
+                const secret = document.getElementById("secret");
+                secret.style.display = "block";
+
+                // Phát âm thanh
+                document.getElementById("winSound").play();
+
+                // Ẩn sau 4 giây
+                setTimeout(() => {
+                    secret.style.display = "none";
+                }, 4000);
             }
         });
 }
 </script>
-
 
 </body>
 </html>
