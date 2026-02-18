@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>LÌ XÌ CHO EM GUỘC</title>
+    <title>LÌ XÌ CHO MẤY CỤC VÀNG</title>
 
     <style>
         body {
@@ -19,9 +19,13 @@
 
         .container {
             margin-top: 80px;
-            display: flex;
-            gap: 120px;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 80px;
+            justify-items: center;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .lixi {
@@ -87,14 +91,16 @@
 
 <body>
 
-<h1>🎁 LÌ XÌ CHO EM GUỘC ❤️</h1>
+<h1>🎁 LÌ XÌ CHO MẤY CỤC VÀNG ❤️</h1>
 
 <div class="container">
     <div class="lixi" onclick="openLixi(this,0)">MỞ</div>
     <div class="lixi" onclick="openLixi(this,1)">MỞ</div>
+    <div class="lixi" onclick="openLixi(this,2)">MỞ</div>
+    <div class="lixi" onclick="openLixi(this,3)">MỞ</div>
 </div>
 
-<div id="secret">🎉 SECRET 20K 🎉</div>
+<div id="secret">🎉 SECRET 50K 🎉</div>
 
 <!-- 🔊 Âm thanh -->
 <audio id="winSound" src="/static/secret.mp3"></audio>
@@ -113,7 +119,7 @@ function openLixi(element, index) {
             element.classList.add("opened");
             element.onclick = null;
 
-            if (data.prize == 20000) {
+            if (data.prize == 50000) {
 
                 // Hiện SECRET
                 const secret = document.getElementById("secret");
